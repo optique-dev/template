@@ -1,13 +1,13 @@
 package main
 
 import (
-	"log/slog"
 	"os"
 	"os/signal"
 	"syscall"
 
-	"github.com/Courtcircuits/optique/template/application"
-	"github.com/Courtcircuits/optique/template/infrastructure"
+	"github.com/optique-dev/core"
+	"github.com/optique-dev/template/application"
+	"github.com/optique-dev/template/infrastructure"
 )
 
 // Cycle is the component in charge of the life cycle of the application
@@ -51,7 +51,7 @@ func (c *cycle) AddApplication(app application.Application) {
 
 func (c *cycle) Setup() error {
 	if len(c.repos) == 0 {
-		slog.Info("No repository to setup")
+		core.Info("No repository to setup")
 		return nil
 	}
 	for _, repository := range c.repos {
@@ -65,7 +65,7 @@ func (c *cycle) Setup() error {
 // Ignite starts the application
 func (c *cycle) Ignite() error {
 	if len(c.apps) == 0 {
-		slog.Info("No application to start")
+		core.Info("No application to start")
 		return nil
 	}
 
@@ -73,7 +73,7 @@ func (c *cycle) Ignite() error {
 		go func(app application.Application) {
 			err := app.Ignite()
 			if err != nil {
-				slog.Error(err.Error())
+				core.Error(err.Error())
 			}
 		}(app)
 	}
@@ -89,7 +89,7 @@ func (c *cycle) Ignite() error {
 
 // Stop stops the application
 func (c *cycle) Stop() error {
-	slog.Info("Stopping applications with graceful shutdown")
+	core.Info("Stopping applications with graceful shutdown")
 	close(c.shutdown)
 	for _, app := range c.apps {
 		err := app.Stop()

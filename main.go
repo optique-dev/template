@@ -1,10 +1,10 @@
 package main
 
 import (
-	"log/slog"
 	"os"
 
-	"github.com/Courtcircuits/optique/template/config"
+	"github.com/optique-dev/core"
+	"github.com/optique-dev/template/config"
 )
 
 // @title Optique application TO CHANGE
@@ -15,6 +15,8 @@ import (
 // @contact.email tristan-mihai.radulescu@etu.umontpellier.fr
 func main() {
 	conf, err := config.LoadConfig()
+	core.Init() // init logger
+
 	if err != nil {
 		config.HandleError(err)
 	}
@@ -23,7 +25,7 @@ func main() {
 	if conf.Bootstrap {
 		err := cycle.Setup()
 		if err != nil {
-			log.Error(err.Error())
+			core.Error(err.Error())
 			cycle.Stop()
 			os.Exit(1)
 		}
