@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/optique-dev/core"
+	"github.com/optique-dev/optique"
 	"github.com/optique-dev/template/config"
 )
 
@@ -24,7 +24,7 @@ func main() {
 	if conf.Bootstrap {
 		err := cycle.Setup()
 		if err != nil {
-			core.Error(err.Error())
+			optique.Error(err.Error())
 			cycle.Stop()
 			os.Exit(1)
 		}

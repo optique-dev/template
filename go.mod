@@ -2,13 +2,15 @@ module github.com/optique-dev/template
 
 go 1.24.2
 
-require github.com/spf13/viper v1.20.1
+require (
+	github.com/optique-dev/optique v0.5.0
+	github.com/spf13/viper v1.20.1
+)
 
 require (
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/go-viper/mapstructure/v2 v2.2.1 // indirect
 	github.com/gookit/color v1.5.4 // indirect
-	github.com/optique-dev/core v0.3.3 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
 	github.com/sagikazarmark/locafero v0.7.0 // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect

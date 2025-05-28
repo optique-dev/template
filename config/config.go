@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 
-	"github.com/optique-dev/core"
+	"github.com/optique-dev/optique"
 
 	"github.com/spf13/viper"
 )
@@ -35,10 +35,10 @@ func HandleError(err error) {
 
 	switch err.(type) {
 	case viper.ConfigFileNotFoundError:
-		core.Error("Config file not found")
+		optique.Error("Config file not found")
 		panic(err)
 	case viper.ConfigParseError:
-		core.Error(fmt.Sprintf("Config file parse error : %s", err.Error()))
+		optique.Error(fmt.Sprintf("Config file parse error : %s", err.Error()))
 		panic(err)
 	default:
 		panic(err)
